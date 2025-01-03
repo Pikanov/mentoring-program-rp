@@ -14,7 +14,7 @@ public class LoginStep {
     }
 
     @Step
-    public DashboardPage login(User user) {
+    public DashboardPage login(final User user) {
         loginPage.fillNameField(user.getUsername())
                 .fillPasswordField(user.getPassword())
                 .clickSubmitButton();

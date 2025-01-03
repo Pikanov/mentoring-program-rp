@@ -9,18 +9,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class DriverCreator {
-    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    private static final ThreadLocal<WebDriverWait> wait = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> DRIVER_THREAD_LOCAL = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriverWait> WAIT_THREAD_LOCAL = new ThreadLocal<>();
+
+    private static final int IMPLICIT_WAIT_SECONDS = 30;
+    private static final int EXPLICIT_WAIT_SECONDS = 30;
 
     private DriverCreator() {
-
     }
 
     public static WebDriver getDriver() {
-        if (driver.get() == null) {
+        if (DRIVER_THREAD_LOCAL.get() == null) {
             initializeDriver();
         }
-        return driver.get();
+        return DRIVER_THREAD_LOCAL.get();
     }
 
     private static void initializeDriver() {
@@ -31,24 +33,24 @@ public class DriverCreator {
             options.addArguments("--headless");
         }
 
-        driver.set(new ChromeDriver(options));
-        WebDriver webDriver = driver.get();
+        DRIVER_THREAD_LOCAL.set(new ChromeDriver(options));
+        WebDriver webDriver = DRIVER_THREAD_LOCAL.get();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        //TODO should be refactored
-        wait.set(new WebDriverWait(webDriver, Duration.ofSeconds(30)));
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT_SECONDS));
+
+        WAIT_THREAD_LOCAL.set(new WebDriverWait(webDriver, Duration.ofSeconds(EXPLICIT_WAIT_SECONDS)));
     }
 
     public static WebDriverWait getWait() {
-        return wait.get();
+        return WAIT_THREAD_LOCAL.get();
     }
 
     public static void quitBrowser() {
-        WebDriver webDriver = driver.get();
+        WebDriver webDriver = DRIVER_THREAD_LOCAL.get();
         if (webDriver != null) {
             webDriver.quit();
-            driver.remove();
-            wait.remove();
+            DRIVER_THREAD_LOCAL.remove();
+            WAIT_THREAD_LOCAL.remove();
         }
     }
 }

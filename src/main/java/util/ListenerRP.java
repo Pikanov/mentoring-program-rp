@@ -9,7 +9,7 @@ import org.testng.ITestResult;
 
 public class ListenerRP extends ReportPortalTestNGListener {
 
-    public void onTestFailure(ITestResult testResult) {
+    public void onTestFailure(final ITestResult testResult) {
         if (!testResult.isSuccess()) {
             Object currentClass = testResult.getInstance().getClass();
             LoggingUtil.log(currentClass.toString());

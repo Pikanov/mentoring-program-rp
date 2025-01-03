@@ -1,12 +1,12 @@
 package util;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class Config {
-    private final static String CONFIG_PROPERTIES = "config.properties";
+
+    private static final String CONFIG_PROPERTIES = "config.properties";
     private static Config config;
     private final Properties properties;
 
@@ -22,7 +22,7 @@ public class Config {
         return config;
     }
 
-    public void loadProperties(String fileName) {
+    public void loadProperties(final String fileName) {
         try (InputStream stream = Config.class.getClassLoader().getResourceAsStream(fileName)) {
             if (stream == null) {
                 LoggingUtil.log("File not Found: " + fileName);
@@ -34,8 +34,7 @@ public class Config {
         }
     }
 
-    public static String getProperties(String key) {
+    public static String getProperties(final String key) {
         return getConf().properties.getProperty(key);
     }
 }
-

@@ -5,8 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import util.Config;
 import util.DriverCreator;
 
-import java.util.List;
-
 
 public class LoginPage extends BasePage {
 
