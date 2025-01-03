@@ -13,6 +13,8 @@ import util.LoggingUtil;
 import java.time.Duration;
 
 public class BasePage {
+    private static final int DEFAULT_WAIT_TIME = 30;
+
     private final WebDriver driver = DriverCreator.getDriver();
     private final WebDriverWait wait = DriverCreator.getWait();
 
@@ -26,13 +28,12 @@ public class BasePage {
     }
 
     private void waitForPageLoad() {
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-                webDriver -> ((JavascriptExecutor) webDriver)
-                        .executeScript("return document.readyState").equals("complete")
-        );
+        new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_WAIT_TIME))
+                .until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState")
+                        .equals("complete"));
     }
 
-    public void waitForElementToAppear(WebElement element) {
+    public void waitForElementToAppear(final WebElement element) {
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException e) {

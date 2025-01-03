@@ -13,8 +13,8 @@ import util.RandomData;
 public class LoginPageTest extends BaseApiTest {
 
     @Test
-    public void verifyIsAppLoaded() {
-        Assert.assertTrue(new LoginStep().verifyIsLoginPageLoaded(), "Login page wasn't open");
+    public void verifyIsAppLoaded(){
+Assert.assertTrue(new LoginStep().verifyIsLoginPageLoaded(), "Login page wasn't open");
     }
 
     @Test
