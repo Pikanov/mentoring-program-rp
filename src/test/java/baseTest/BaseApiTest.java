@@ -1,5 +1,5 @@
 package baseTest;
 
-public class BaseApiTest extends BaseTest {
+public class BaseApiTest {
     //TODO should be implemented API
 }
