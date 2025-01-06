@@ -4,8 +4,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class DriverCreator {
@@ -26,19 +30,47 @@ public class DriverCreator {
     }
 
     private static void initializeDriver() {
+        String runMode = Config.getProperties("runMode");
+        WebDriver webDriver;
+
+        if ("remote".equalsIgnoreCase(runMode)) {
+            webDriver = initializeRemoteDriver();
+        } else {
+            webDriver = initializeLocalDriver();
+        }
+
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT_SECONDS));
+
+        DRIVER_THREAD_LOCAL.set(webDriver);
+        WAIT_THREAD_LOCAL.set(new WebDriverWait(webDriver, Duration.ofSeconds(EXPLICIT_WAIT_SECONDS)));
+    }
+
+    private static WebDriver initializeLocalDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         if (Boolean.parseBoolean(Config.getProperties("headlessMode"))) {
             options.addArguments("--headless");
         }
+        return new ChromeDriver(options);
+    }
 
-        DRIVER_THREAD_LOCAL.set(new ChromeDriver(options));
-        WebDriver webDriver = DRIVER_THREAD_LOCAL.get();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT_SECONDS));
+    private static WebDriver initializeRemoteDriver() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless");
 
-        WAIT_THREAD_LOCAL.set(new WebDriverWait(webDriver, Duration.ofSeconds(EXPLICIT_WAIT_SECONDS)));
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("chrome");
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+
+        try {
+            String remoteUrl = Config.getProperties("remoteUrl");
+            return new RemoteWebDriver(new URL(remoteUrl), capabilities);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Invalid remote URL: " + e.getMessage(), e);
+        }
     }
 
     public static WebDriverWait getWait() {

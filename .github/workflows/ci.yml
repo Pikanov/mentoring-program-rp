@@ -9,8 +9,23 @@ on:
       - master
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+
+    services:
+      selenium-hub:
+        image: selenium/hub:4.9.0
+        ports:
+          - 4444:4444
+      chrome-node:
+        image: selenium/node-chrome:4.9.0
+        depends_on:
+          - selenium-hub
+        environment:
+          - SE_EVENT_BUS_HOST=selenium-hub
+          - SE_EVENT_BUS_PUBLISH_PORT=4442
+          - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+        shm_size: 2g
 
     steps:
       - name: Checkout code
@@ -21,6 +36,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Set up Maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-m2
 
       - name: Build with Maven
         run: mvn clean install
