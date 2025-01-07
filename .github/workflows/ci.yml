@@ -19,8 +19,7 @@ jobs:
           - 4444:4444
       chrome-node:
         image: selenium/node-chrome:4.9.0
-        options: >
-          --shm-size=2g
+        options: "--shm-size=2g"
         env:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
