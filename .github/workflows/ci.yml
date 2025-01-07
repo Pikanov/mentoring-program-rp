@@ -19,13 +19,14 @@ jobs:
           - 4444:4444
       chrome-node:
         image: selenium/node-chrome:4.9.0
-        depends_on:
-          - selenium-hub
-        environment:
-          - SE_EVENT_BUS_HOST=selenium-hub
-          - SE_EVENT_BUS_PUBLISH_PORT=4442
-          - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-        shm_size: 2g
+        ports:
+          - 5900:5900
+        options: >
+          --shm-size 2g
+        env:
+          SE_EVENT_BUS_HOST: selenium-hub
+          SE_EVENT_BUS_PUBLISH_PORT: 4442
+          SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
 
     steps:
       - name: Checkout code
@@ -52,4 +53,9 @@ jobs:
         run: mvn checkstyle:check
 
       - name: Run tests
+        env:
+          HOST: https://reportportal.epam.com/ui/#login
+          REMOTE_URL: http://localhost:4444/wd/hub
+          RUN_MODE: remote
+          HEADLESS_MODE: true
         run: mvn test
