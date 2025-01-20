@@ -1,5 +1,4 @@
 name: CI
-
 on:
   pull_request:
     branches:
@@ -7,11 +6,9 @@ on:
   push:
     branches:
       - master
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     services:
       selenium-hub:
         image: selenium/hub:4.9.0
@@ -19,22 +16,21 @@ jobs:
           - 4444:4444
       chrome-node:
         image: selenium/node-chrome:4.9.0
+        options: >
+          --shm-size=2g
         options: "--shm-size=2g"
         env:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'temurin'
-
       - name: Set up Maven cache
         uses: actions/cache@v2
         with:
@@ -42,47 +38,14 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-m2
-
       - name: Build with Maven
         run: mvn clean install
-
       - name: Run Checkstyle
         run: mvn checkstyle:check
-
-      - name: Install ngrok and expose local ReportPortal
-        run: |
-          # Install ngrok
-          curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
-          echo "deb https://ngrok-agent.s3.amazonaws.com/ buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
-          sudo apt update
-          sudo apt install ngrok
-
-          # Start ngrok tunnel and save the public URL
-          ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
-          ngrok http 8080 > /dev/null &
-          sleep 10
-
-          # Get the public URL from ngrok
-          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
-          echo "NGROK_URL=$NGROK_URL" >> $GITHUB_ENV
-          echo "Ngrok public URL: $NGROK_URL"
-
-      - name: Save ngrok URL for later access
-        run: echo $NGROK_URL > ngrok_url.txt
-
-      - name: Upload ngrok URL as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ngrok-url
-          path: ngrok_url.txt
-
-      - name: Run tests with ReportPortal
+      - name: Run tests
         env:
-          RP_ENABLE: true
-          RP_API_KEY: ${{ secrets.RP_API_KEY }}
-          RP_PROJECT: your_project_name
-          RP_LAUNCH: GitHub-Actions-Test
-        run: mvn test -Drp.enable=${{ env.RP_ENABLE }} -Drp.api.key=${{ env.RP_API_KEY }} -Drp.project=${{ env.RP_PROJECT }} -Drp.launch=${{ env.RP_LAUNCH }} -Drp.endpoint=${{ env.NGROK_URL }}/api/v1
-
-#      - name: Stop ngrok tunnel
-#        run: pkill -f ngrok
+          HOST: ${{ secrets.TEST_HOST }}
+          REMOTE_URL: http://localhost:4444/wd/hub
+          RUN_MODE: remote
+          HEADLESS_MODE: true
+        run: mvn test
