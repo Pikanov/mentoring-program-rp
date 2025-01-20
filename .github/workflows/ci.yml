@@ -46,7 +46,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      - name: Run Checkstyle
+      - name: run checkstyle
         run: mvn checkstyle:check
 
       - name: Run tests
