@@ -14,11 +14,11 @@ jobs:
 
     services:
       selenium-hub:
-        image: selenium/hub:4.9.0
+        image: selenium/hub:4.10.0
         ports:
           - 4444:4444
       chrome-node:
-        image: selenium/node-chrome:4.9.0
+        image: selenium/node-chrome:4.10.0
         options: "--shm-size=2g"
         env:
           SE_EVENT_BUS_HOST: selenium-hub
@@ -30,13 +30,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: maven
 
       - name: Set up Maven cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -44,7 +45,7 @@ jobs:
             ${{ runner.os }}-m2
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean install -DskipTests
 
       - name: Run Checkstyle
         run: mvn checkstyle:check
@@ -55,4 +56,18 @@ jobs:
           REMOTE_URL: http://localhost:4444/wd/hub
           RUN_MODE: remote
           HEADLESS_MODE: true
-        run: mvn test
+        run: mvn test -Dtest=*Test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: target/surefire-reports
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-logs
+          path: /home/runner/work/mentoring-program-rp/selenium.log
