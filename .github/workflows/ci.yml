@@ -57,17 +57,3 @@ jobs:
           RUN_MODE: remote
           HEADLESS_MODE: true
         run: mvn test -Dtest=*Test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
-
-      - name: Upload test results
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: target/surefire-reports
-
-      - name: Upload logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: selenium-logs
-          path: /home/runner/work/mentoring-program-rp/selenium.log
