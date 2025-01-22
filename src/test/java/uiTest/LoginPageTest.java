@@ -1,20 +1,17 @@
 package uiTest;
 
-import baseTest.BaseApiTest;
+import baseTest.BaseTest;
 import model.User;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import step.LoginStep;
-import util.ListenerRP;
 import util.RandomData;
 
-@Listeners(ListenerRP.class)
-public class LoginPageTest extends BaseApiTest {
+public class LoginPageTest extends BaseTest {
 
     @Test
-    public void verifyIsAppLoaded(){
-Assert.assertTrue(new LoginStep().verifyIsLoginPageLoaded(), "Login page wasn't open");
+    public void verifyIsAppLoaded() {
+        Assert.assertTrue(new LoginStep().verifyIsLoginPageLoaded(), "Login page wasn't open");
     }
 
     @Test
