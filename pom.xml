@@ -123,17 +123,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.0.0-M8</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <parallel>methods</parallel>
+                    <threadCount>10</threadCount>
+                    <forkCount>2</forkCount>
 
                     <suiteXmlFiles>
                         <suiteXmlFile>suites/loginTestSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <workingDirectory>./</workingDirectory>
+
+                    <systemPropertyVariables>
+                        <REMOTE_URL>http://localhost:4444/wd/hub</REMOTE_URL>
+                        <BROWSER>chrome</BROWSER>
+                        <HEADLESS>true</HEADLESS>
+                    </systemPropertyVariables>
 
                     <properties>
                         <property>
@@ -141,10 +150,6 @@
                             <value>false</value>
                         </property>
                     </properties>
-
-                    <parallel>methods</parallel>
-                    <threadCount>10</threadCount>
-                    <forkCount>2</forkCount>
                 </configuration>
             </plugin>
 
