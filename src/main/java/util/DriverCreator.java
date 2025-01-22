@@ -30,7 +30,7 @@ public class DriverCreator {
     }
 
     private static void initializeDriver() {
-        String runMode = Config.getProperties("runMode");
+        String runMode = ConfigUtil.getConfigProperty("runMode");
         WebDriver webDriver;
 
         if ("remote".equalsIgnoreCase(runMode)) {
@@ -50,7 +50,7 @@ public class DriverCreator {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        if (Boolean.parseBoolean(Config.getProperties("headlessMode"))) {
+        if (Boolean.parseBoolean(ConfigUtil.getConfigProperty("headlessMode"))) {
             options.addArguments("--headless");
         }
         return new ChromeDriver(options);
@@ -66,7 +66,7 @@ public class DriverCreator {
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
         try {
-            String remoteUrl = Config.getProperties("remoteUrl");
+            String remoteUrl = ConfigUtil.getConfigProperty("remoteUrl");
             return new RemoteWebDriver(new URL(remoteUrl), capabilities);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Invalid remote URL: " + e.getMessage(), e);

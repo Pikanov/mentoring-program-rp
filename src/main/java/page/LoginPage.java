@@ -2,7 +2,7 @@ package page;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import util.Config;
+import util.ConfigUtil;
 import util.DriverCreator;
 
 
@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
     }
 
     public Boolean isLoginPageLoaded() {
-        return DriverCreator.getDriver().getCurrentUrl().equals(Config.getProperties("host"));
+        return DriverCreator.getDriver().getCurrentUrl().equals(ConfigUtil.getConfigProperty("host"));
     }
 
     public LoginPage fillNameField(final String name) {
