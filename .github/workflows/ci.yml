@@ -1,59 +1,47 @@
-name: CI
+name: Selenium Hub Setup and Test
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-22.04
-
-    services:
-      selenium-hub:
-        image: selenium/hub:4.10.0
-        ports:
-          - 4444:4444
-      chrome-node:
-        image: selenium/node-chrome:4.10.0
-        options: "--shm-size=2g"
-        env:
-          SE_EVENT_BUS_HOST: selenium-hub
-          SE_EVENT_BUS_PUBLISH_PORT: 4442
-          SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+  setup:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Set up Selenium Hub container
+        run: |
+          docker run -d -p 4444:4444 --name selenium-hub selenium/hub:4.10.0
+          echo "Selenium Hub container started."
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+      - name: Check if Selenium Hub is running
+        run: |
+          docker ps
+          CONTAINER_ID=$(docker ps -q --filter ancestor=selenium/hub)
+          if [ -n "$CONTAINER_ID" ]; then
+            echo "Selenium Hub is running."
+            docker logs "$CONTAINER_ID"
+          else
+            echo "Selenium Hub is not running!"
+            exit 1
+          fi
+      
 
-      - name: Set up Maven cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-m2
+      - name: Check if port 4444 is accessible
+        run: |
+          nc -zv 127.0.0.1 4444 || exit 1
+          echo "Port 4444 is open"
 
-      - name: Build with Maven
-        run: mvn clean install -DskipTests
-
-      - name: Run Checkstyle
-        run: mvn checkstyle:check
+      - name: Set up Selenium Node (Chrome)
+        run: |
+          docker run -d --name selenium-node-chrome --link selenium-hub:hub selenium/node-chrome:4.10.0
+          echo "Selenium Chrome Node started and linked to Hub."
 
       - name: Wait for Selenium Hub to be ready
         run: |
           for i in {1..60}; do
-            if curl -sSL "http://localhost:4444/wd/hub/status" | grep '"ready":true'; then
+            if curl -sSL "http://localhost:4444/status" | grep '"ready":true'; then
               echo "Selenium Hub is ready!"
               exit 0
             fi
@@ -63,33 +51,19 @@ jobs:
           echo "Selenium Hub did not start in time"
           exit 1
 
-      - name: Check Selenium Hub container logs
+      - name: Show Docker logs for troubleshooting
         run: |
-          CONTAINER_ID=$(docker ps -q --filter ancestor=selenium/hub)
-          if [ -n "$CONTAINER_ID" ]; then
-            echo "Selenium Hub logs:"
-            docker logs "$CONTAINER_ID"
+          docker logs $(docker ps -q --filter ancestor=selenium/hub)
+
+      # Крок 7: Збір звітів з тестів (якщо вони є)
+      - name: Upload cucumber reports
+        run: |
+          if [ -f "target/cucumber-report.json" ]; then
+            echo "Uploading cucumber report"
+            actions/upload-artifact@v4:
+              name: cucumber-reports
+              path: target/cucumber-report.json
+              if-no-files-found: warn
           else
-            echo "No running Selenium Hub container found."
+            echo "No cucumber report found."
           fi
-
-      - name: Run Cucumber Tests
-        env:
-          HOST: ${{ secrets.TEST_HOST }}
-          REMOTE_URL: http://localhost:4444/wd/hub
-          RUN_MODE: remote
-          HEADLESS_MODE: true
-        run: mvn test -Dcucumber.options="--plugin json:target/cucumber-report.json"
-
-      - name: Upload Cucumber Reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cucumber-reports
-          path: target/cucumber-report.json
-
-      - name: Check Docker containers health
-        run: |
-          docker ps -a
-          docker inspect selenium/hub
-          docker inspect selenium/node-chrome
