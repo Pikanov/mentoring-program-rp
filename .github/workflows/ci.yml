@@ -45,10 +45,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2
 
-      - name: Wait for Selenium Hub
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
+
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
+
+      - name: Wait for Selenium Hub to be ready
         run: |
           for i in {1..30}; do
-            if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
+            if curl -sSL "http://localhost:4444/wd/hub/status" | grep '"ready":true'; then
               echo "Selenium Hub is ready!"
               exit 0
             fi
@@ -57,12 +63,6 @@ jobs:
           done
           echo "Selenium Hub did not start in time"
           exit 1
-
-      - name: Build with Maven
-        run: mvn clean install -DskipTests
-
-      - name: Run Checkstyle
-        run: mvn checkstyle:check
 
       - name: Run Cucumber Tests
         env:
@@ -81,4 +81,10 @@ jobs:
 
       - name: Get Selenium logs on failure
         if: failure()
-        run: docker logs $(docker ps -q --filter ancestor=selenium/hub)
+        run: |
+          CONTAINER_ID=$(docker ps -q --filter ancestor=selenium/hub)
+          if [ -n "$CONTAINER_ID" ]; then
+            docker logs "$CONTAINER_ID"
+          else
+            echo "No running Selenium Hub container found."
+          fi
