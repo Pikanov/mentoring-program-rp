@@ -17,6 +17,7 @@ jobs:
         image: selenium/hub:4.10.0
         ports:
           - 4444:4444
+        options: --health-cmd="curl -f http://localhost:4444/wd/hub/status || exit 1" --health-interval=5s --health-retries=10
 
       chrome-node:
         image: selenium/node-chrome:4.10.0
@@ -25,6 +26,8 @@ jobs:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+        depends_on:
+          - selenium-hub
 
     steps:
       - name: Checkout code
@@ -54,7 +57,9 @@ jobs:
       - name: Wait for Selenium Hub to be ready
         run: |
           for i in {1..30}; do
-            if curl -sSL "http://localhost:4444/wd/hub/status" | grep '"ready":true'; then
+            RESPONSE=$(curl -sSL "http://localhost:4444/wd/hub/status")
+            echo "Response from Selenium Hub: $RESPONSE"
+            if echo "$RESPONSE" | grep -q '"ready":true'; then
               echo "Selenium Hub is ready!"
               exit 0
             fi
@@ -63,6 +68,9 @@ jobs:
           done
           echo "Selenium Hub did not start in time"
           exit 1
+
+      - name: Sleep before running tests
+        run: sleep 10
 
       - name: Run Cucumber Tests
         env:
@@ -79,12 +87,24 @@ jobs:
           name: cucumber-reports
           path: target/cucumber-report.json
 
-      - name: Get Selenium logs on failure
+      - name: Get Docker logs on failure
         if: failure()
         run: |
+          echo "Checking running containers..."
+          docker ps -a
+          
           CONTAINER_ID=$(docker ps -q --filter ancestor=selenium/hub)
           if [ -n "$CONTAINER_ID" ]; then
+            echo "Logs from Selenium Hub:"
             docker logs "$CONTAINER_ID"
           else
             echo "No running Selenium Hub container found."
+          fi
+
+          CHROME_ID=$(docker ps -q --filter ancestor=selenium/node-chrome)
+          if [ -n "$CHROME_ID" ]; then
+            echo "Logs from Chrome Node:"
+            docker logs "$CHROME_ID"
+          else
+            echo "No running Chrome Node container found."
           fi
