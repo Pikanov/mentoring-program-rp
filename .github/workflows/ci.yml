@@ -17,6 +17,7 @@ jobs:
         image: selenium/hub:4.10.0
         ports:
           - 4444:4444
+
       chrome-node:
         image: selenium/node-chrome:4.10.0
         options: "--shm-size=2g"
@@ -24,6 +25,8 @@ jobs:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+        depends_on:
+          - selenium-hub
 
     steps:
       - name: Checkout code
@@ -50,10 +53,17 @@ jobs:
       - name: Run Checkstyle
         run: mvn checkstyle:check
 
-      - name: Run tests
+      - name: Run Cucumber Tests
         env:
           HOST: ${{ secrets.TEST_HOST }}
           REMOTE_URL: http://localhost:4444/wd/hub
           RUN_MODE: remote
           HEADLESS_MODE: true
-        run: mvn test -Dtest=*Test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
+        run: mvn test -Dcucumber.options="--plugin json:target/cucumber-report.json"
+
+      - name: Upload Cucumber Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cucumber-reports
+          path: target/cucumber-report.json
