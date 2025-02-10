@@ -53,7 +53,7 @@ jobs:
       - name: Run tests
         env:
           HOST: ${{ secrets.TEST_HOST }}
-          REMOTE_URL: http://selenium-hub:4444/wd/hub  # використовуємо ім'я сервісу selenium-hub
+          REMOTE_URL: http://selenium-hub:4444/wd/hub
           RUN_MODE: remote
           HEADLESS_MODE: true
-        run: mvn test -Dcucumber.options="--tags @regression" -Dwebdriver.chrome.driver=/usr/bin/chromedriver
+        run: mvn test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
