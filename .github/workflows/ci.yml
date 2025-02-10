@@ -63,6 +63,16 @@ jobs:
           echo "Selenium Hub did not start in time"
           exit 1
 
+      - name: Check Selenium Hub container logs
+        run: |
+          CONTAINER_ID=$(docker ps -q --filter ancestor=selenium/hub)
+          if [ -n "$CONTAINER_ID" ]; then
+            echo "Selenium Hub logs:"
+            docker logs "$CONTAINER_ID"
+          else
+            echo "No running Selenium Hub container found."
+          fi
+
       - name: Run Cucumber Tests
         env:
           HOST: ${{ secrets.TEST_HOST }}
@@ -77,17 +87,6 @@ jobs:
         with:
           name: cucumber-reports
           path: target/cucumber-report.json
-
-      - name: Get Selenium logs on failure
-        if: failure()
-        run: |
-          CONTAINER_ID=$(docker ps -q --filter ancestor=selenium/hub)
-          if [ -n "$CONTAINER_ID" ]; then
-            echo "Selenium Hub logs:"
-            docker logs "$CONTAINER_ID"
-          else
-            echo "No running Selenium Hub container found."
-          fi
 
       - name: Check Docker containers health
         run: |
