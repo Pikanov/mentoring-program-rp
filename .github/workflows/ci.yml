@@ -1,9 +1,9 @@
 name: Selenium Hub Setup and Test
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   setup:
