@@ -56,4 +56,11 @@ jobs:
           REMOTE_URL: http://localhost:4444/wd/hub
           RUN_MODE: remote
           HEADLESS_MODE: true
-        run: mvn test -Dtest=*Test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
+        run: mvn test -Dtest=*Test -Dwebdriver.chrome.driver=/usr/bin/chromedriver -q
+
+      - name: Upload test logs as artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: target/surefire-reports/*.log
