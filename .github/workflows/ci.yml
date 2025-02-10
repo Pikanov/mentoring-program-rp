@@ -10,11 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Крок 1: Завантаження контейнера Selenium Hub
       - name: Set up Selenium Hub container
         run: |
           docker run -d -p 4444:4444 --name selenium-hub selenium/hub:4.10.0
           echo "Selenium Hub container started."
 
+      # Крок 2: Перевірка, чи працює контейнер Selenium Hub
       - name: Check if Selenium Hub is running
         run: |
           docker ps
@@ -26,18 +28,20 @@ jobs:
             echo "Selenium Hub is not running!"
             exit 1
           fi
-      
 
+      # Крок 3: Перевірка доступності порту 4444
       - name: Check if port 4444 is accessible
         run: |
           nc -zv 127.0.0.1 4444 || exit 1
           echo "Port 4444 is open"
 
+      # Крок 4: Налаштування Selenium Node (Chrome)
       - name: Set up Selenium Node (Chrome)
         run: |
           docker run -d --name selenium-node-chrome --link selenium-hub:hub selenium/node-chrome:4.10.0
           echo "Selenium Chrome Node started and linked to Hub."
 
+      # Крок 5: Очікування на готовність Selenium Hub
       - name: Wait for Selenium Hub to be ready
         run: |
           for i in {1..60}; do
@@ -51,19 +55,17 @@ jobs:
           echo "Selenium Hub did not start in time"
           exit 1
 
+      # Крок 6: Виведення логів Docker контейнера для усунення несправностей
       - name: Show Docker logs for troubleshooting
         run: |
           docker logs $(docker ps -q --filter ancestor=selenium/hub)
 
-      # Крок 7: Збір звітів з тестів (якщо вони є)
+      # Крок 7: Завантаження звітів Cucumber (якщо вони є)
       - name: Upload cucumber reports
-        run: |
-          if [ -f "target/cucumber-report.json" ]; then
-            echo "Uploading cucumber report"
-            actions/upload-artifact@v4:
-              name: cucumber-reports
-              path: target/cucumber-report.json
-              if-no-files-found: warn
-          else
-            echo "No cucumber report found."
-          fi
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-reports
+          path: target/cucumber-report.json
+          if-no-files-found: warn
+          compression-level: 6
+          overwrite: false
