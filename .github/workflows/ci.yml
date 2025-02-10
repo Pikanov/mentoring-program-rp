@@ -52,13 +52,13 @@ jobs:
 
       - name: Wait for Selenium Hub to be ready
         run: |
-          for i in {1..30}; do
+          for i in {1..60}; do
             if curl -sSL "http://localhost:4444/wd/hub/status" | grep '"ready":true'; then
               echo "Selenium Hub is ready!"
               exit 0
             fi
-            echo "Waiting for Selenium Hub..."
-            sleep 2
+            echo "Waiting for Selenium Hub... Attempt $i"
+            sleep 5
           done
           echo "Selenium Hub did not start in time"
           exit 1
@@ -81,21 +81,16 @@ jobs:
       - name: Get Selenium logs on failure
         if: failure()
         run: |
-          echo "Checking running containers..."
-          docker ps -a
-          
           CONTAINER_ID=$(docker ps -q --filter ancestor=selenium/hub)
           if [ -n "$CONTAINER_ID" ]; then
-            echo "Logs from Selenium Hub:"
+            echo "Selenium Hub logs:"
             docker logs "$CONTAINER_ID"
           else
             echo "No running Selenium Hub container found."
           fi
 
-          CHROME_ID=$(docker ps -q --filter ancestor=selenium/node-chrome)
-          if [ -n "$CHROME_ID" ]; then
-            echo "Logs from Chrome Node:"
-            docker logs "$CHROME_ID"
-          else
-            echo "No running Chrome Node container found."
-          fi
+      - name: Check Docker containers health
+        run: |
+          docker ps -a
+          docker inspect selenium/hub
+          docker inspect selenium/node-chrome
