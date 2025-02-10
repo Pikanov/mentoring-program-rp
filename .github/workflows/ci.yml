@@ -25,12 +25,23 @@ jobs:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
-        depends_on:
-          - selenium-hub
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Wait for Selenium Hub to be ready
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:4444/wd/hub/status | grep -q '"ready":true'; then
+              echo "Selenium Hub is ready"
+              exit 0
+            fi
+            echo "Waiting for Selenium Hub..."
+            sleep 2
+          done
+          echo "Selenium Hub did not start in time" >&2
+          exit 1
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
