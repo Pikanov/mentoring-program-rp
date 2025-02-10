@@ -53,7 +53,14 @@ jobs:
       - name: Run tests
         env:
           HOST: ${{ secrets.TEST_HOST }}
-          REMOTE_URL: http://selenium-hub:4444/wd/hub
+          REMOTE_URL: http://localhost:4444/wd/hub
           RUN_MODE: remote
           HEADLESS_MODE: true
-        run: mvn test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
+        run: mvn test -Dtest=*Test -Dwebdriver.chrome.driver=/usr/bin/chromedriver -q
+
+      - name: Upload test logs as artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-logs
+          path: target/surefire-reports/*.log
