@@ -58,7 +58,7 @@ jobs:
               exit 0
             fi
             echo "Waiting for Selenium Hub... Attempt $i"
-            sleep 5
+            sleep 10
           done
           echo "Selenium Hub did not start in time"
           exit 1
