@@ -1,7 +1,6 @@
 package apiTests;
 
 import baseTest.BaseApiTest;
-import io.restassured.response.Response;
 import model.Dashboard;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -12,8 +11,8 @@ public class DashboardApiTest extends BaseApiTest {
 
     @Test
     public void testCreateDashboard() {
-        String projectName = "testproject";
-        Dashboard dashboardData = Dashboard.builder()
+        var projectName = "testproject";
+        var dashboardData = Dashboard.builder()
                 .name(RandomData.getRandomString())
                 .description(RandomData.getRandomString())
                 .build();
@@ -34,13 +33,13 @@ public class DashboardApiTest extends BaseApiTest {
                 .reduce((first, second) -> second)
                 .orElseThrow(() -> new AssertionError("Failed to get last dashboard ID"));
 
-        Response deleteResponse = dashboardApi.deleteDashboard(projectName, getLastDashboardId);
+        var deleteResponse = dashboardApi.deleteDashboard(projectName, getLastDashboardId);
         Assert.assertEquals(deleteResponse.statusCode(), HttpStatus.SC_OK, "Dashboard deletion failed.");
     }
 
     @Test
     public void testRequiredFieldValidationOfDashboardCreation() {
-        String projectName = "testproject";
+        var projectName = "testproject";
         var dashboardInvalidData = Dashboard.builder()
                 .name(null)
                 .description(null)
@@ -53,12 +52,12 @@ public class DashboardApiTest extends BaseApiTest {
     @Test
     public void testUpdateDashboard() {
         String projectName = "testproject";
-        Dashboard dashboardData = Dashboard.builder()
+        var dashboardData = Dashboard.builder()
                 .name(RandomData.getRandomString())
                 .description(RandomData.getRandomString())
                 .build();
 
-        Dashboard updatedDashboardData = Dashboard.builder()
+        var updatedDashboardData = Dashboard.builder()
                 .name(RandomData.getRandomString())
                 .description(RandomData.getRandomString())
                 .build();
@@ -79,7 +78,7 @@ public class DashboardApiTest extends BaseApiTest {
                 .reduce((first, second) -> second)
                 .orElseThrow(() -> new AssertionError("Failed to get last dashboard ID"));
 
-        Response updateDashboardResponse = dashboardApi.updateDashboard(projectName,
+        var updateDashboardResponse = dashboardApi.updateDashboard(projectName,
                 getLastCreatedDashboardId, updatedDashboardData);
         Assert.assertEquals(updateDashboardResponse.statusCode(), HttpStatus.SC_OK, "Dashboard update failed.");
 
