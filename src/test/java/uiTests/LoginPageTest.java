@@ -1,4 +1,4 @@
-package uiTest;
+package uiTests;
 
 import baseTest.BaseTest;
 import model.User;

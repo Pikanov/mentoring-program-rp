@@ -18,6 +18,7 @@
         <testng.version>7.8.0</testng.version>
         <webdrivermanager.version>5.4.0</webdrivermanager.version>
         <lombok.version>1.18.30</lombok.version>
+        <restAssured.version>5.4.0</restAssured.version>
     </properties>
 
     <dependencies>
@@ -97,6 +98,16 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${restAssured.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.4.2</version>
         </dependency>
     </dependencies>
 
