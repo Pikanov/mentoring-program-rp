@@ -1,40 +1,26 @@
 package page;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import util.ConfigUtil;
-import util.DriverCreator;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage extends BasePage {
 
-    @FindBy(xpath = "//*[@placeholder='Login']")
-    private WebElement nameField;
-
-    @FindBy(xpath = "//*[@placeholder='Password']")
-    private WebElement passwordField;
-
-    @FindBy(xpath = "//*[contains(@class,'loginPage__logo')]")
-    private WebElement title;
-
-    @FindBy(xpath = "//*[@type='submit']")
-    private WebElement submitButton;
-
-    @FindBy(xpath = "//*[contains(@class,'notificationItem__error')]")
-    private WebElement errorMessage;
+    private final SelenideElement nameField = $(By.xpath("//*[@placeholder='Login']"));
+    private final SelenideElement passwordField = $(By.xpath("//*[@placeholder='Password']"));
+    private final SelenideElement title = $(By.xpath("//*[contains(@class,'loginPage__logo')]"));
+    private final SelenideElement submitButton = $(By.xpath("//*[@type='submit']"));
+    private final SelenideElement errorMessage = $(By.xpath("//*[contains(@class,'notificationItem__error')]"));
 
     public LoginPage() {
         super();
     }
 
-    public Boolean isLoginPageLoaded() {
-        return DriverCreator.getDriver().getCurrentUrl().equals(ConfigUtil.getConfigProperty("host"));
-    }
-
     public LoginPage fillNameField(final String name) {
         if (name != null) {
             waitForElementToAppear(nameField);
-            nameField.sendKeys(name);
+            nameField.setValue(name);
         }
         return this;
     }
@@ -42,7 +28,7 @@ public class LoginPage extends BasePage {
     public LoginPage fillPasswordField(final String password) {
         if (password != null) {
             waitForElementToAppear(passwordField);
-            passwordField.sendKeys(password);
+            passwordField.setValue(password);
         }
         return this;
     }

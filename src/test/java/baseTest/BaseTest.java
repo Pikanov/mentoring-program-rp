@@ -1,12 +1,13 @@
 package baseTest;
 
+import com.codeborne.selenide.Selenide;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import util.ConfigUtil;
-import util.DriverCreator;
 import util.ListenerRP;
 import util.LoggingUtil;
+import util.SelenideConfig;
 
 @Listeners(ListenerRP.class)
 public class BaseTest {
@@ -14,13 +15,14 @@ public class BaseTest {
 
     @BeforeMethod
     public void initDriver() {
-        DriverCreator.getDriver().navigate().to(BASE_URL);
-        LoggingUtil.log("WebDriver initialized and navigate to: " + BASE_URL);
+        SelenideConfig.chromeDriverConfigSetup();
+        LoggingUtil.log("Opening URL: " + BASE_URL);
+        Selenide.open(BASE_URL);
     }
 
     @AfterMethod(alwaysRun = true)
     public void quitDriver() {
-        DriverCreator.quitBrowser();
-        LoggingUtil.log("Thread resources closed");
+        Selenide.closeWebDriver();
+        LoggingUtil.log("Browser closed");
     }
 }

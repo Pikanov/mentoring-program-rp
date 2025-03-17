@@ -11,7 +11,7 @@ import util.TestDataReader;
 
 import java.util.List;
 
-public class LoginPageTest extends BaseTest {
+public class LoginPageTests extends BaseTest {
 
     @Test
     public void verifyIsAppLoaded() {

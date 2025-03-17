@@ -2,7 +2,8 @@
 <suite name="Login test" parallel="methods" thread-count="10">
     <test verbose="1" name="login-testcases">
         <classes>
-            <class name="uiTests.LoginPageTest"/>
+            <class name="uiTests.LoginPageTests"/>
+            <class name="uiTests.DashboardTests"/>
         </classes>
     </test>
 </suite>
