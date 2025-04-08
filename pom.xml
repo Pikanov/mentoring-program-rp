@@ -77,6 +77,19 @@
         </dependency>
 
         <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>7.7.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
@@ -145,7 +158,8 @@
                     <forkCount>2</forkCount>
 
                     <suiteXmlFiles>
-                        <suiteXmlFile>suites/loginTestSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>suites/uiTestSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>suites/apiTestSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <workingDirectory>./</workingDirectory>
                     <properties>

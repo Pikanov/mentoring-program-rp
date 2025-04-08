@@ -2,7 +2,6 @@ package step;
 
 import com.epam.reportportal.annotations.Step;
 import model.User;
-import page.DashboardPage;
 import page.LoginPage;
 
 public class LoginStep {
@@ -14,12 +13,10 @@ public class LoginStep {
     }
 
     @Step
-    public DashboardPage login(final User user) {
+    public void login(final User user) {
         loginPage.fillNameField(user.getUsername())
                 .fillPasswordField(user.getPassword())
                 .clickSubmitButton();
-        //TODO should be investigated which page will be open after success login.
-        return new DashboardPage();
     }
 
     @Step

@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import util.RandomData;
 
-public class DashboardApiTest extends BaseApiTest {
+public class DashboardApiTests extends BaseApiTest {
 
     @Test
     public void testCreateDashboard() {
