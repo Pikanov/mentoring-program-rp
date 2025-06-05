@@ -50,7 +50,7 @@ jobs:
         run: mvn checkstyle:check
 
       - name: Run tests
-        run: mvn test -Dtest=*Test -DrunMode=${{ env.RUN_MODE }} -DremoteUrl=${{ env.REMOTE_URL }} -DheadlessMode=${{ env.HEADLESS_MODE }}
+        run: mvn test -Dtest=**/*Test -DrunMode=${{ env.RUN_MODE }} -DremoteUrl=${{ env.REMOTE_URL }} -DheadlessMode=${{ env.HEADLESS_MODE }}
 
       - name: Generate Allure Report
         run: mvn allure:report
