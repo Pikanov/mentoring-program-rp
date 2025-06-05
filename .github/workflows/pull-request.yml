@@ -1,11 +1,12 @@
-name: PR CI
+name: Pull Request CI
 
 on:
   pull_request:
+    branches:
+      - master
 
 jobs:
-  pr-test:
-    name: Pull Request Verification
+  build-and-test:
     runs-on: ubuntu-22.04
 
     services:
@@ -22,7 +23,10 @@ jobs:
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-java@v3
         with:
@@ -30,8 +34,18 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
       - name: Build without tests
         run: mvn clean install -DskipTests
+
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
 
       - name: Run tests
         env:
@@ -43,7 +57,7 @@ jobs:
       - name: Generate Allure Report
         run: mvn allure:report
 
-      - name: Upload Allure Report to GitHub Pages
+      - name: Deploy Allure Report to GitHub Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v4
         with:
