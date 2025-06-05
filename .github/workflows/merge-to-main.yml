@@ -1,4 +1,4 @@
-name: Merge to Master CI
+name: Merge to Main CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build & Test on Merge to Master
+    name: Build & Test on Merge to Main
     runs-on: ubuntu-22.04
 
     services:
@@ -55,7 +55,7 @@ jobs:
       - name: Generate Allure Report
         run: mvn allure:report
 
-      - name: Deploy Allure Report to GitHub Pages
+      - name: Upload Allure Report to GitHub Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -63,3 +63,9 @@ jobs:
           publish_dir: ./target/site/allure-maven-plugin
           publish_branch: gh-pages
           destination_dir: master/${{ github.run_number }}
+
+      - name: Update GitHub Pages index.html
+        run: bash ./update-index.sh
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

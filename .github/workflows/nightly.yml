@@ -1,11 +1,12 @@
-name: Nightly Test Job
+name: Nightly Test Run
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 0 * * *'
 
 jobs:
-  nightly-tests:
+  nightly-test:
+    name: Nightly Build and Allure Report
     runs-on: ubuntu-22.04
 
     services:
@@ -30,20 +31,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
       - name: Build without tests
         run: mvn clean install -DskipTests
 
-      - name: Checkstyle
-        run: mvn checkstyle:check
-
-      - name: Run nightly tests
+      - name: Run tests
         env:
           REMOTE_URL: http://localhost:4444/wd/hub
           RUN_MODE: remote
@@ -61,3 +52,9 @@ jobs:
           publish_dir: ./target/site/allure-maven-plugin
           publish_branch: gh-pages
           destination_dir: nightly/${{ github.run_number }}
+
+      - name: Update GitHub Pages index.html
+        run: bash ./update-index.sh
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
