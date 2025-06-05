@@ -51,7 +51,7 @@ jobs:
           REMOTE_URL: http://localhost:4444/wd/hub
           RUN_MODE: remote
           HEADLESS_MODE: true
-        run: mvn test -Dtest=*Test -DrunMode=remote -DremoteUrl=http://localhost:4444/wd/hub -DheadlessMode=true
+        run: mvn test -Dtest=*Test -DrunMode=remote -DremoteUrl=$REMOTE_URL -DheadlessMode=$HEADLESS_MODE
 
       - name: Generate Allure Report
         run: mvn allure:report
