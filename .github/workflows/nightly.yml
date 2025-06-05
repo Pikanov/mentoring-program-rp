@@ -54,7 +54,7 @@ jobs:
           destination_dir: nightly/${{ github.run_number }}
 
       - name: Update GitHub Pages index.html
-        run: bash ./update-index.sh
+        run: bash .github/scripts/update-index.sh
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
