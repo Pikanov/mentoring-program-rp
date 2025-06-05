@@ -1,9 +1,6 @@
-name: CI
+name: Merge to Master CI
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
       - master
@@ -26,28 +23,25 @@ jobs:
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
+      - uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
 
-      - name: Set up Maven cache
+      - name: Cache Maven packages
         uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-m2
+          restore-keys: ${{ runner.os }}-m2
 
-      - name: Build with Maven
+      - name: Build without tests
         run: mvn clean install -DskipTests
 
-      - name: Run Checkstyle
+      - name: Checkstyle
         run: mvn checkstyle:check
 
       - name: Run tests
@@ -56,3 +50,13 @@ jobs:
           RUN_MODE: remote
           HEADLESS_MODE: true
         run: mvn test -Dtest=*Test -DrunMode=remote -DremoteUrl=http://localhost:4444/wd/hub -DheadlessMode=true
+
+      - name: Generate Allure Report
+        run: mvn allure:report
+
+      - name: Deploy Allure Report to GitHub Pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/allure-report
