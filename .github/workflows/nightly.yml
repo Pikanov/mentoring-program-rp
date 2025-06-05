@@ -2,7 +2,7 @@ name: Nightly Test Job
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   nightly-tests:
@@ -63,6 +63,7 @@ jobs:
           publish_dir: ./target/allure-report
           publish_branch: gh-pages
           destination_dir: nightly/${{ github.run_number }}
+          keep_files: true
 
       - name: Update GitHub Pages index.html
         run: bash .github/scripts/update-index.sh
