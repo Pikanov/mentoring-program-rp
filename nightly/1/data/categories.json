@@ -1,0 +1,60 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=114.0.5735.133)\nBuild info: version: '4.8.1', revision: '8ebccac989'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.8.0-1029-azure', java.version: '17.0.15'\nselenide.remote: http://localhost:4444/wd/hub\nDriver info: org.openqa.selenium.remote.RemoteWebDriver\nCommand: [975c5d2e2268e1be193b37774ea66a31, get {url=http://localhost:8080}]\nselenide.url: http://localhost:8080\nCapabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 114.0.5735.133, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /tmp/.com.google.Chrome.DBZtCc}, goog:chromeOptions: {debuggerAddress: localhost:33337}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://172.18.0.3:4444/sessio..., se:cdpVersion: 114.0.5735.133, se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: accept, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nselenide.baseUrl: http://localhost:8080\nSession ID: 975c5d2e2268e1be193b37774ea66a31",
+      "children" : [ {
+        "name" : "initDriver",
+        "uid" : "a563cef74a9f3c3a",
+        "parentUid" : "982fa453fa7c392f5ac8651f668239dd",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749158763759,
+          "stop" : 1749158763760,
+          "duration" : 1
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "982fa453fa7c392f5ac8651f668239dd"
+    }, {
+      "name" : "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=114.0.5735.133)\nBuild info: version: '4.8.1', revision: '8ebccac989'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.8.0-1029-azure', java.version: '17.0.15'\nselenide.remote: http://localhost:4444/wd/hub\nDriver info: org.openqa.selenium.remote.RemoteWebDriver\nCommand: [d0bcbf71e07028eef82b36a97836a7cc, get {url=http://localhost:8080}]\nselenide.url: http://localhost:8080\nCapabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 114.0.5735.133, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /tmp/.com.google.Chrome.tbAW4M}, goog:chromeOptions: {debuggerAddress: localhost:39541}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://172.18.0.3:4444/sessio..., se:cdpVersion: 114.0.5735.133, se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: accept, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nselenide.baseUrl: http://localhost:8080\nSession ID: d0bcbf71e07028eef82b36a97836a7cc",
+      "children" : [ {
+        "name" : "initDriver",
+        "uid" : "59ea097444d2596a",
+        "parentUid" : "a22140089ca5d50d82d5d8dee8c41720",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749158766424,
+          "stop" : 1749158766424,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "a22140089ca5d50d82d5d8dee8c41720"
+    }, {
+      "name" : "Connection refused",
+      "children" : [ {
+        "name" : "setUp",
+        "uid" : "366cef428dd2f1f9",
+        "parentUid" : "2a28c7f16dede1e65edff18a9173351c",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749158767850,
+          "stop" : 1749158767850,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "2a28c7f16dede1e65edff18a9173351c"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}
