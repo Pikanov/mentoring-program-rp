@@ -12,6 +12,7 @@ public class DashboardApiTests extends BaseApiTest {
     @Test
     public void testCreateDashboard() {
         var projectName = "testproject";
+
         var dashboardData = Dashboard.builder()
                 .name(RandomData.getRandomString())
                 .description(RandomData.getRandomString())

@@ -1,0 +1,72 @@
+name: Nightly Test Job
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  nightly-tests:
+    runs-on: ubuntu-22.04
+
+    services:
+      selenium-hub:
+        image: selenium/hub:4.10.0
+        ports:
+          - 4444:4444
+      chrome-node:
+        image: selenium/node-chrome:4.10.0
+        options: "--shm-size=2g"
+        env:
+          SE_EVENT_BUS_HOST: selenium-hub
+          SE_EVENT_BUS_PUBLISH_PORT: 4442
+          SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build without tests
+        run: mvn clean install -DskipTests
+
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
+
+      - name: Run tests
+        env:
+          REMOTE_URL: http://localhost:4444/wd/hub
+          RUN_MODE: remote
+          HEADLESS_MODE: true
+        run: mvn test -Dtest=*Test -DrunMode=remote -DremoteUrl=http://localhost:4444/wd/hub -DheadlessMode=true
+
+      - name: Generate Allure Report
+        run: mvn allure:report
+
+      - name: Deploy Allure Report to GitHub Pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/allure-maven-plugin
+          publish_branch: gh-pages
+          destination_dir: nightly/${{ github.run_number }}
+
+      - name: Update GitHub Pages index.html
+        run: bash .github/scripts/update-index.sh
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
