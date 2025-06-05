@@ -37,4 +37,5 @@ git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
 git add index.html
 git commit -m "Update index.html [skip ci]" || echo "No changes"
+git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 git push origin HEAD:gh-pages
