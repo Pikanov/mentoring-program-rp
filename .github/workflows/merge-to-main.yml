@@ -7,8 +7,11 @@ on:
 
 jobs:
   build-and-test:
-    name: Build & Test on Merge to Master
     runs-on: ubuntu-22.04
+    env:
+      REMOTE_URL: http://localhost:4444/wd/hub
+      RUN_MODE: remote
+      HEADLESS_MODE: true
 
     services:
       selenium-hub:
@@ -24,8 +27,7 @@ jobs:
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -49,11 +51,7 @@ jobs:
         run: mvn checkstyle:check
 
       - name: Run tests
-        env:
-          REMOTE_URL: http://localhost:4444/wd/hub
-          RUN_MODE: remote
-          HEADLESS_MODE: true
-        run: mvn test -Dtest=*Test -DrunMode=remote -DremoteUrl=$REMOTE_URL -DheadlessMode=$HEADLESS_MODE
+        run: mvn test -Dtest=*Test -DrunMode=${{ env.RUN_MODE }} -DremoteUrl=${{ env.REMOTE_URL }} -DheadlessMode=${{ env.HEADLESS_MODE }}
 
       - name: Generate Allure Report
         run: mvn allure:report
