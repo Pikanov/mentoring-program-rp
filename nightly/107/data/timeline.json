@@ -1,0 +1,218 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "fv-az773-171",
+    "children" : [ {
+      "name" : "2770@fv-az773-171.TestNG-test=login-testcases-1(41)",
+      "children" : [ {
+        "name" : "setUp",
+        "uid" : "9645395a307478dc",
+        "parentUid" : "35bf6effed02fff7a004152bd83af8fa",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749251531141,
+          "stop" : 1749251531141,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "testCreateDashboard",
+        "uid" : "ea755cfaba27c9f6",
+        "parentUid" : "35bf6effed02fff7a004152bd83af8fa",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1749251531159,
+          "stop" : 1749251531159,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "35bf6effed02fff7a004152bd83af8fa"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-test=login-testcases-2(42)",
+      "children" : [ {
+        "name" : "testRequiredFieldValidationOfDashboardCreation",
+        "uid" : "aee19a6df475e783",
+        "parentUid" : "a6081a2e9beb84c1a3a91ca66f03dfdc",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1749251531155,
+          "stop" : 1749251531155,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "setUp",
+        "uid" : "ae4585a9f3a814c4",
+        "parentUid" : "a6081a2e9beb84c1a3a91ca66f03dfdc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749251531146,
+          "stop" : 1749251531147,
+          "duration" : 1
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "a6081a2e9beb84c1a3a91ca66f03dfdc"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-test=login-testcases-1(21)",
+      "children" : [ {
+        "name" : "verifyIsAppLoaded",
+        "uid" : "79fe20f823986f12",
+        "parentUid" : "44bf2dc0bd4a41531ea08f1181198325",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749251517799,
+          "stop" : 1749251517884,
+          "duration" : 85
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "44bf2dc0bd4a41531ea08f1181198325"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-test=login-testcases-3(43)",
+      "children" : [ {
+        "name" : "testUpdateDashboard",
+        "uid" : "8c66aab0fe19921c",
+        "parentUid" : "4ef8886fa5af334739a3589c0313bfb1",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1749251531156,
+          "stop" : 1749251531156,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "setUp",
+        "uid" : "d02ef14d2fdeef68",
+        "parentUid" : "4ef8886fa5af334739a3589c0313bfb1",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749251531146,
+          "stop" : 1749251531151,
+          "duration" : 5
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "4ef8886fa5af334739a3589c0313bfb1"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-PoolService-3(28)",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "c82f10ca09a28717",
+        "parentUid" : "0d0e22670fcaf67b97ead8a7d1ccbf8f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1749251467025,
+          "stop" : 1749251468104,
+          "duration" : 1079
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=admin2, password=admin1234)" ]
+      } ],
+      "uid" : "0d0e22670fcaf67b97ead8a7d1ccbf8f"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-PoolService-0(25)",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "853498905f0b5794",
+        "parentUid" : "2c89b958d455ccc1e9eda022b48702f1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1749251461396,
+          "stop" : 1749251462513,
+          "duration" : 1117
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=user1, password=pass123)" ]
+      } ],
+      "uid" : "2c89b958d455ccc1e9eda022b48702f1"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-PoolService-1(26)",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "a945963e547e0e9e",
+        "parentUid" : "ccb011c0aec34a3ae5ec3d72bd5946d4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1749251455610,
+          "stop" : 1749251457033,
+          "duration" : 1423
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=user2, password=wrongpass)" ]
+      } ],
+      "uid" : "ccb011c0aec34a3ae5ec3d72bd5946d4"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-test=login-testcases-3(23)",
+      "children" : [ {
+        "name" : "verifyIsSearchFieldReturnCorrectDashboard",
+        "uid" : "e7e1cf049d43df70",
+        "parentUid" : "107aa1dfa70aabb5774f0c73421d1863",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749251472377,
+          "stop" : 1749251513334,
+          "duration" : 40957
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "107aa1dfa70aabb5774f0c73421d1863"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-PoolService-4(29)",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "4c627695ca29f19c",
+        "parentUid" : "cb072ecbb48fe4ee1922c550ffd198c1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1749251528720,
+          "stop" : 1749251529671,
+          "duration" : 951
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=admin3, password=admin12345)" ]
+      } ],
+      "uid" : "cb072ecbb48fe4ee1922c550ffd198c1"
+    }, {
+      "name" : "2770@fv-az773-171.TestNG-PoolService-2(27)",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "d7d69a7aadf2c925",
+        "parentUid" : "443583f35671bf2285cf48a2553000fc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1749251523250,
+          "stop" : 1749251524237,
+          "duration" : 987
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=admin1, password=admin123)" ]
+      } ],
+      "uid" : "443583f35671bf2285cf48a2553000fc"
+    } ],
+    "uid" : "cfbd70ad5c19d4f73e66474ee75ae313"
+  } ]
+}
