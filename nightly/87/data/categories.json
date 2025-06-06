@@ -1,0 +1,64 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Login page wasn't open expected [true] but found [false]",
+      "children" : [ {
+        "name" : "verifyIsAppLoaded",
+        "uid" : "102320287c1672f",
+        "parentUid" : "b50e8faed0d4d3c01cc943fa09796282",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749238940373,
+          "stop" : 1749238940498,
+          "duration" : 125
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "b50e8faed0d4d3c01cc943fa09796282"
+    }, {
+      "name" : "Element not found {By.xpath: //*[contains(@class,'sidebarButton') and contains(text(),'Dashboards')]}\nExpected: exist\nScreenshot: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1749238990230.0.png\nPage source: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1749238990230.0.html\nTimeout: 10 s.\nCaused by: NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//*[contains(@class,'sidebarButton') and contains(text(),'Dashboards')]\"}",
+      "children" : [ {
+        "name" : "verifyIsSearchFieldReturnCorrectDashboard",
+        "uid" : "56b1aa125a575ba8",
+        "parentUid" : "c1720c16e39bd570404aefab051af8d7",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749238949261,
+          "stop" : 1749238990363,
+          "duration" : 41102
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c1720c16e39bd570404aefab051af8d7"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Connection refused",
+      "children" : [ {
+        "name" : "setUp",
+        "uid" : "2cf13e1de014a273",
+        "parentUid" : "2a28c7f16dede1e65edff18a9173351c",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749239001246,
+          "stop" : 1749239001247,
+          "duration" : 1
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "2a28c7f16dede1e65edff18a9173351c"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}
