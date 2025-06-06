@@ -1,0 +1,64 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Element not found {By.xpath: //*[contains(@class,'sidebarButton') and contains(text(),'Dashboards')]}\nExpected: exist\nScreenshot: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1749236512995.0.png\nPage source: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1749236512995.0.html\nTimeout: 10 s.\nCaused by: NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//*[contains(@class,'sidebarButton') and contains(text(),'Dashboards')]\"}",
+      "children" : [ {
+        "name" : "verifyIsSearchFieldReturnCorrectDashboard",
+        "uid" : "7657b8c8cbe5a51c",
+        "parentUid" : "0c7bb19b7d25d2ae22abdc0c39d29722",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749236472201,
+          "stop" : 1749236513127,
+          "duration" : 40926
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "0c7bb19b7d25d2ae22abdc0c39d29722"
+    }, {
+      "name" : "Login page wasn't open expected [true] but found [false]",
+      "children" : [ {
+        "name" : "verifyIsAppLoaded",
+        "uid" : "aa6a3d6ea9cf64aa",
+        "parentUid" : "b50e8faed0d4d3c01cc943fa09796282",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749236527594,
+          "stop" : 1749236527684,
+          "duration" : 90
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "b50e8faed0d4d3c01cc943fa09796282"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Connection refused",
+      "children" : [ {
+        "name" : "setUp",
+        "uid" : "c791584f6da2cf07",
+        "parentUid" : "2a28c7f16dede1e65edff18a9173351c",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749236533948,
+          "stop" : 1749236533948,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "2a28c7f16dede1e65edff18a9173351c"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}
