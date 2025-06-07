@@ -1,0 +1,148 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+    "uid" : "bbb0f9c185b15f96",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1749310954845,
+      "stop" : 1749310956185,
+      "duration" : 1340
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ "User(username=admin2, password=admin1234)" ]
+  }, {
+    "name" : "verifyIsAppLoaded",
+    "uid" : "54afab8607d77965",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "failed",
+    "time" : {
+      "start" : 1749310960097,
+      "stop" : 1749310960223,
+      "duration" : 126
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+    "uid" : "e9801bb3275e0e82",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1749310964187,
+      "stop" : 1749310965283,
+      "duration" : 1096
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ "User(username=user2, password=wrongpass)" ]
+  }, {
+    "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+    "uid" : "41b019dd6ddee2f1",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1749310969102,
+      "stop" : 1749310970126,
+      "duration" : 1024
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ "User(username=admin1, password=admin123)" ]
+  }, {
+    "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+    "uid" : "2f96c7c3a6f97777",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1749310974001,
+      "stop" : 1749310975041,
+      "duration" : 1040
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ "User(username=admin3, password=admin12345)" ]
+  }, {
+    "name" : "verifyIsSearchFieldReturnCorrectDashboard",
+    "uid" : "90cdc73e507050a6",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "failed",
+    "time" : {
+      "start" : 1749310978801,
+      "stop" : 1749311019680,
+      "duration" : 40879
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+    "uid" : "f6233d103224650",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1749311023615,
+      "stop" : 1749311024559,
+      "duration" : 944
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ "User(username=user1, password=pass123)" ]
+  }, {
+    "name" : "setUp",
+    "uid" : "31183bcf84654377",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "broken",
+    "time" : {
+      "start" : 1749311026065,
+      "stop" : 1749311026065,
+      "duration" : 0
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "testCreateDashboard",
+    "uid" : "b9b549eb84a5e428",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "skipped",
+    "time" : {
+      "start" : 1749311026069,
+      "stop" : 1749311026069,
+      "duration" : 0
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "testRequiredFieldValidationOfDashboardCreation",
+    "uid" : "93fbe3fe232428ca",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "skipped",
+    "time" : {
+      "start" : 1749311026070,
+      "stop" : 1749311026070,
+      "duration" : 0
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "testUpdateDashboard",
+    "uid" : "7ef88c99629d7cde",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "skipped",
+    "time" : {
+      "start" : 1749311026074,
+      "stop" : 1749311026074,
+      "duration" : 0
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  } ]
+}
