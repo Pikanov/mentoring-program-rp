@@ -1,0 +1,97 @@
+{
+  "uid" : "645b1904b5fbd71",
+  "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+  "fullName" : "uiTests.LoginPageTests.verifyIsUserCannotLoginWithWrongCredentials",
+  "historyId" : "af7260a02ebf4ecbea6f5d9904c580ba",
+  "time" : {
+    "start" : 1749367208141,
+    "stop" : 1749367209156,
+    "duration" : 1015
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "initDriver",
+    "time" : {
+      "start" : 1749367152482,
+      "stop" : 1749367208139,
+      "duration" : 55657
+    },
+    "description" : "",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "quitDriver",
+    "time" : {
+      "start" : 1749367209157,
+      "stop" : 1749367209241,
+      "duration" : 84
+    },
+    "description" : "",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "uiTests.LoginPageTests"
+  }, {
+    "name" : "testClass",
+    "value" : "uiTests.LoginPageTests"
+  }, {
+    "name" : "testMethod",
+    "value" : "verifyIsUserCannotLoginWithWrongCredentials"
+  }, {
+    "name" : "parentSuite",
+    "value" : "Login test"
+  }, {
+    "name" : "suite",
+    "value" : "login-testcases"
+  }, {
+    "name" : "subSuite",
+    "value" : "uiTests.LoginPageTests"
+  }, {
+    "name" : "host",
+    "value" : "fv-az529-405"
+  }, {
+    "name" : "thread",
+    "value" : "2767@fv-az529-405.TestNG-PoolService-1(26)"
+  }, {
+    "name" : "framework",
+    "value" : "testng"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "arg0",
+    "value" : "User(username=user2, password=wrongpass)"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "645b1904b5fbd71.json",
+  "parameterValues" : [ "User(username=user2, password=wrongpass)" ]
+}
