@@ -1,0 +1,270 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "runnervmrc6n4",
+    "children" : [ {
+      "name" : "2956@runnervmrc6n4.TestNG-test=login-testcases-1(21)",
+      "children" : [ {
+        "name" : "verifyIsAppLoaded",
+        "uid" : "7dc4b8a8e8ed3f7d",
+        "parentUid" : "ead2602ad0e15c82111438a437d51941",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1776754594069,
+          "stop" : 1776754594069,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "initDriver",
+        "uid" : "5a99650a49fb8513",
+        "parentUid" : "ead2602ad0e15c82111438a437d51941",
+        "status" : "broken",
+        "time" : {
+          "start" : 1776754594061,
+          "stop" : 1776754594064,
+          "duration" : 3
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "ead2602ad0e15c82111438a437d51941"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-PoolService-0(25)",
+      "children" : [ {
+        "name" : "initDriver",
+        "uid" : "d90519a42ca5d0e0",
+        "parentUid" : "3ffd2d1e4249c60283cb4f2a6eb9b9c5",
+        "status" : "broken",
+        "time" : {
+          "start" : 1776754594059,
+          "stop" : 1776754594059,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "64068dfbaa98ffdd",
+        "parentUid" : "3ffd2d1e4249c60283cb4f2a6eb9b9c5",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1776754594063,
+          "stop" : 1776754594064,
+          "duration" : 1
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=user1, password=pass123)" ]
+      } ],
+      "uid" : "3ffd2d1e4249c60283cb4f2a6eb9b9c5"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-PoolService-4(29)",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "f529974f9b98bd00",
+        "parentUid" : "6adaaee3843ae3445732d372a8ba2e7b",
+        "status" : "failed",
+        "time" : {
+          "start" : 1776754556378,
+          "stop" : 1776754587107,
+          "duration" : 30729
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=admin3, password=admin12345)" ]
+      } ],
+      "uid" : "6adaaee3843ae3445732d372a8ba2e7b"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-PoolService-2(27)",
+      "children" : [ {
+        "name" : "initDriver",
+        "uid" : "fbb99777c8a4154b",
+        "parentUid" : "be713d99c6c231db87b601101d63a540",
+        "status" : "broken",
+        "time" : {
+          "start" : 1776754594059,
+          "stop" : 1776754594061,
+          "duration" : 2
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "57e979ccb2f71a81",
+        "parentUid" : "be713d99c6c231db87b601101d63a540",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1776754594066,
+          "stop" : 1776754594067,
+          "duration" : 1
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=admin1, password=admin123)" ]
+      } ],
+      "uid" : "be713d99c6c231db87b601101d63a540"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-test=login-testcases-3(43)",
+      "children" : [ {
+        "name" : "setUp",
+        "uid" : "478b7a0848d58145",
+        "parentUid" : "d84b60e50eacb0eb2be28e77aef77d6a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1776754624653,
+          "stop" : 1776754624654,
+          "duration" : 1
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "testUpdateDashboard",
+        "uid" : "f7e5b4f06844ce0a",
+        "parentUid" : "d84b60e50eacb0eb2be28e77aef77d6a",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1776754624656,
+          "stop" : 1776754624656,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "d84b60e50eacb0eb2be28e77aef77d6a"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-test=login-testcases-2(42)",
+      "children" : [ {
+        "name" : "setUp",
+        "uid" : "41f38cf1cd8351f3",
+        "parentUid" : "7c38183ba6c9586a1622cc1b61ba0d12",
+        "status" : "broken",
+        "time" : {
+          "start" : 1776754624648,
+          "stop" : 1776754624648,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "testRequiredFieldValidationOfDashboardCreation",
+        "uid" : "f26b32cc546239d6",
+        "parentUid" : "7c38183ba6c9586a1622cc1b61ba0d12",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1776754624657,
+          "stop" : 1776754624657,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "7c38183ba6c9586a1622cc1b61ba0d12"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-test=login-testcases-1(41)",
+      "children" : [ {
+        "name" : "testCreateDashboard",
+        "uid" : "6e8330bb5ef3a427",
+        "parentUid" : "088b08af2ebb6cd5411ba825e8e419e8",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1776754624661,
+          "stop" : 1776754624661,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "setUp",
+        "uid" : "d6e6141e2932dd5d",
+        "parentUid" : "088b08af2ebb6cd5411ba825e8e419e8",
+        "status" : "broken",
+        "time" : {
+          "start" : 1776754624651,
+          "stop" : 1776754624651,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "088b08af2ebb6cd5411ba825e8e419e8"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-test=login-testcases-3(23)",
+      "children" : [ {
+        "name" : "verifyIsSearchFieldReturnCorrectDashboard",
+        "uid" : "e07b780110373068",
+        "parentUid" : "bfbc0f007a8e4f7704f3d4710b9b8cbc",
+        "status" : "failed",
+        "time" : {
+          "start" : 1776754510305,
+          "stop" : 1776754551524,
+          "duration" : 41219
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "bfbc0f007a8e4f7704f3d4710b9b8cbc"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-PoolService-3(28)",
+      "children" : [ {
+        "name" : "initDriver",
+        "uid" : "9ad810b9b2416365",
+        "parentUid" : "707ce1ea4e0515742da130169a1b6ee9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1776754594059,
+          "stop" : 1776754594066,
+          "duration" : 7
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "a0b9393dac6230f6",
+        "parentUid" : "707ce1ea4e0515742da130169a1b6ee9",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1776754594069,
+          "stop" : 1776754594069,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=admin2, password=admin1234)" ]
+      } ],
+      "uid" : "707ce1ea4e0515742da130169a1b6ee9"
+    }, {
+      "name" : "2956@runnervmrc6n4.TestNG-PoolService-1(26)",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "429208dc9e356b6f",
+        "parentUid" : "8b1a16b60e8abc187c6841c641c3d155",
+        "status" : "failed",
+        "time" : {
+          "start" : 1776754592233,
+          "stop" : 1776754622968,
+          "duration" : 30735
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=user2, password=wrongpass)" ]
+      } ],
+      "uid" : "8b1a16b60e8abc187c6841c641c3d155"
+    } ],
+    "uid" : "198322668e16254815305e76c5ffdc15"
+  } ]
+}
