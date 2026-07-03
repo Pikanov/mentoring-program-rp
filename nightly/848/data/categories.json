@@ -1,0 +1,111 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Element not found {By.xpath: //*[contains(@class,'notificationItem__error')]}\nExpected: visible\nScreenshot: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1783065439741.0.png\nPage source: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1783065439741.0.html\nTimeout: 30 s.\nCaused by: NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//*[contains(@class,'notificationItem__error')]\"}",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "2b0bf7ca352f266",
+        "parentUid" : "da49d185398e7748d862f926ce43247d",
+        "status" : "failed",
+        "time" : {
+          "start" : 1783065408484,
+          "stop" : 1783065439888,
+          "duration" : 31404
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=admin3, password=admin12345)" ]
+      } ],
+      "uid" : "da49d185398e7748d862f926ce43247d"
+    }, {
+      "name" : "Element not found {By.xpath: //*[contains(@class,'notificationItem__error')]}\nExpected: visible\nScreenshot: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1783065473655.1.png\nPage source: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1783065473655.1.html\nTimeout: 30 s.\nCaused by: NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//*[contains(@class,'notificationItem__error')]\"}",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "714252ab264d81cd",
+        "parentUid" : "27b83a7ea2d8be213a583a94591d709a",
+        "status" : "failed",
+        "time" : {
+          "start" : 1783065442763,
+          "stop" : 1783065473768,
+          "duration" : 31005
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=user2, password=wrongpass)" ]
+      } ],
+      "uid" : "27b83a7ea2d8be213a583a94591d709a"
+    }, {
+      "name" : "Element not found {By.xpath: //*[contains(@class,'notificationItem__error')]}\nExpected: visible\nScreenshot: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1783065507395.2.png\nPage source: file:/home/runner/work/mentoring-program-rp/mentoring-program-rp/build/reports/tests/1783065507395.2.html\nTimeout: 30 s.\nCaused by: NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//*[contains(@class,'notificationItem__error')]\"}",
+      "children" : [ {
+        "name" : "verifyIsUserCannotLoginWithWrongCredentials",
+        "uid" : "6d8eade2252e79af",
+        "parentUid" : "bafe9c272ddf62ae8467a07823495d18",
+        "status" : "failed",
+        "time" : {
+          "start" : 1783065476587,
+          "stop" : 1783065507488,
+          "duration" : 30901
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "User(username=admin1, password=admin123)" ]
+      } ],
+      "uid" : "bafe9c272ddf62ae8467a07823495d18"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure. \nHost info: host: 'runnervmjbsos', ip: '10.1.0.159'\nBuild info: version: '4.8.1', revision: '8ebccac989'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.8.0-1059-azure', java.version: '17.0.19'\nselenide.remote: http://localhost:4444/wd/hub\nDriver info: org.openqa.selenium.remote.RemoteWebDriver\nCommand: [null, newSession {capabilities=[Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--proxy-bypass-list=<-loopb..., --disable-dev-shm-usage, --disable-search-engine-cho..., --unsafely-disable-devtools..., --window-size=1366,768, --remote-allow-origins=*, --start-maximized, --headless=new], excludeSwitches: [enable-automation, load-extension], extensions: [], prefs: {autofill.credit_card_enabled: false, autofill.profile_enabled: false, credentials_enable_service: false, plugins.always_open_pdf_externally: true, profile.default_content_setting_values.automatic_downloads: 1, profile.password_manager_enabled: false, profile.password_manager_leak_detection: false, safebrowsing.enabled: true}}, pageLoadStrategy: normal, unhandledPromptBehavior: accept}], desiredCapabilities=Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--proxy-bypass-list=<-loopb..., --disable-dev-shm-usage, --disable-search-engine-cho..., --unsafely-disable-devtools..., --window-size=1366,768, --remote-allow-origins=*, --start-maximized, --headless=new], excludeSwitches: [enable-automation, load-extension], extensions: [], prefs: {autofill.credit_card_enabled: false, autofill.profile_enabled: false, credentials_enable_service: false, plugins.always_open_pdf_externally: true, profile.default_content_setting_values.automatic_downloads: 1, profile.password_manager_enabled: false, profile.password_manager_leak_detection: false, safebrowsing.enabled: true}}, pageLoadStrategy: normal, unhandledPromptBehavior: accept}}]\nselenide.url: https://reportportal.epam.com/ui/#login\nCapabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--proxy-bypass-list=<-loopb..., --disable-dev-shm-usage, --disable-search-engine-cho..., --unsafely-disable-devtools..., --window-size=1366,768, --remote-allow-origins=*, --start-maximized, --headless=new], excludeSwitches: [enable-automation, load-extension], extensions: [], prefs: {autofill.credit_card_enabled: false, autofill.profile_enabled: false, credentials_enable_service: false, plugins.always_open_pdf_externally: true, profile.default_content_setting_values.automatic_downloads: 1, profile.password_manager_enabled: false, profile.password_manager_leak_detection: false, safebrowsing.enabled: true}}, pageLoadStrategy: normal, unhandledPromptBehavior: accept}\nselenide.baseUrl: http://localhost:8080",
+      "children" : [ {
+        "name" : "initDriver",
+        "uid" : "a5bb8600e6a4e781",
+        "parentUid" : "ec545aedb84037b4de5b3b8e57921a32",
+        "status" : "broken",
+        "time" : {
+          "start" : 1783065494634,
+          "stop" : 1783065494635,
+          "duration" : 1
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "initDriver",
+        "uid" : "70bf56c77dab14df",
+        "parentUid" : "ec545aedb84037b4de5b3b8e57921a32",
+        "status" : "broken",
+        "time" : {
+          "start" : 1783065494637,
+          "stop" : 1783065494637,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "ec545aedb84037b4de5b3b8e57921a32"
+    }, {
+      "name" : "Connection refused",
+      "children" : [ {
+        "name" : "setUp",
+        "uid" : "6edd5d61b9965f89",
+        "parentUid" : "2a28c7f16dede1e65edff18a9173351c",
+        "status" : "broken",
+        "time" : {
+          "start" : 1783065509542,
+          "stop" : 1783065509542,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "2a28c7f16dede1e65edff18a9173351c"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}
